@@ -37,8 +37,6 @@ NSString *NSStringFromCRToastInteractionType(CRToastInteractionType interactionT
     return nil;
 }
 
-typedef void (^CRToastInteractionResponderBlock) (CRToastInteractionType interactionType);
-
 @interface CRToastSwipeGestureRecognizer : UISwipeGestureRecognizer
 @property (nonatomic, assign) BOOL automaticallyDismiss;
 @property (nonatomic, assign) CRToastInteractionType interactionType;
@@ -492,7 +490,7 @@ static NSDictionary *                kCRToastKeyClassMap                    = ni
     }
     
     if (swipeGestureRecognizer.block) {
-        swipeGestureRecognizer.block(swipeGestureRecognizer.interactionType);
+        swipeGestureRecognizer.block(swipeGestureRecognizer.interactionType, swipeGestureRecognizer);
     }
 }
 
@@ -502,7 +500,7 @@ static NSDictionary *                kCRToastKeyClassMap                    = ni
     }
     
     if (tapGestureRecognizer.block) {
-        tapGestureRecognizer.block(tapGestureRecognizer.interactionType);
+        tapGestureRecognizer.block(tapGestureRecognizer.interactionType, tapGestureRecognizer);
     }
 }
 

@@ -40,6 +40,8 @@ typedef NS_OPTIONS(NSInteger, CRToastInteractionType) {
 
 extern NSString *NSStringFromCRToastInteractionType(CRToastInteractionType interactionType);
 
+typedef void (^CRToastInteractionResponderBlock) (CRToastInteractionType interactionType, UIGestureRecognizer *gestureRecognizer);
+
 /**
  CRToastInteractionResponder is a container object to configure responses to user interactions with a notification. A collection of interaction responders can be included in the
  options for any given notification or in defaults.
@@ -56,7 +58,7 @@ extern NSString *NSStringFromCRToastInteractionType(CRToastInteractionType inter
  */
 + (instancetype)interactionResponderWithInteractionType:(CRToastInteractionType)interactionType
                                    automaticallyDismiss:(BOOL)automaticallyDismiss
-                                                  block:(void (^)(CRToastInteractionType interactionType))block;
+                                                  block:(CRToastInteractionResponderBlock)block;
 @end
 
 ///--------------------
